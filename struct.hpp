@@ -53,6 +53,7 @@ class GameProcess {
     int ProcessMove(int fd, int command);
     void DetermineWinner();
     void GetResults(int fd, int* is_winner, int* my_score, int* opponent_score);
+    void ResetNewRound();
 };
 
 

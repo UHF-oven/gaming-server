@@ -55,8 +55,8 @@ int main(int argc, char **argv) {
     int bytes_read;
     std::string input;
     std::string buffer;
-//    custom_read(my_socket.get(), buffer, 1024);
-//    std::cout << buffer;
+    custom_read(my_socket.get(), buffer, 1024);
+    std::cout << buffer;
     custom_read(my_socket.get(), buffer, 1024);
     std::cout << buffer;
     char answer;
@@ -64,18 +64,12 @@ int main(int argc, char **argv) {
 //    std::cout << "Now i'm waiting for connection\n";
 
     while(true) {
-//        std::cout << "I'm into \n ";
+        std::cout << "I'm into \n ";
 //        std::this_thread::sleep_for(std::chrono::milliseconds(500));
 //        sleep(1);
 //        custom_read(my_socket.get(), buffer, 1024);
 //        std::cout << buffer;
-//        std::cout << "And now i wanna read ur choise\n";
-
-        std::cout << "\n\n";
-
-        custom_read(my_socket.get(), buffer, 1024);
-        std::cout << buffer;
- 
+        std::cout << "And now i wanna read ur choise\n";
         while(true) {
             std::cout << "\n>> ";
             std::cin >> input;
@@ -86,7 +80,7 @@ int main(int argc, char **argv) {
             }
         }
 
-//        std::cout << "I read your choise\n";
+        std::cout << "I read your choise\n";
         if (input == "rock") {
             answer = 1;
         } else if (input == "scissors") {
@@ -100,18 +94,12 @@ int main(int argc, char **argv) {
 
         answer += '0';
         send(my_socket.get(), &answer, 1, 0);
-//        std::cout << "i sent your choise\n";
+        std::cout << "i sent your choise\n";
 
         custom_read(my_socket.get(), buffer, 1024);
         std::cout << buffer;
         custom_read(my_socket.get(), buffer, 1024);
         std::cout << buffer;
-        custom_read(my_socket.get(), buffer, 1024);
-        std::cout << buffer;
-//        custom_read(my_socket.get(), buffer, 1024);
-//        std::cout << buffer;
-
-
     }
 
 

@@ -40,7 +40,8 @@ int main() {
     Socket main_socket;
     
     std::stack<int> players_fd;
-    std::vector<std::unique_ptr<GameProcess>> game_vector;
+//    std::vector<std::unique_ptr<GameProcess>> game_vector;
+    std::shared_ptr<GameProcess> game_pointer;
     std::vector<std::thread> threads_vector;
 
     std::string waiting_message = "Waiting for one more player...\r\n";
@@ -86,19 +87,19 @@ int main() {
 
         if (players_fd.size() < 2) {
 
-//            write(client_fd, waiting_message.c_str(), waiting_message.length());
+            write(client_fd, waiting_message.c_str(), waiting_message.length());
 
         } else {
             
-//            write(client_fd, starting_message.c_str(), starting_message.length());
+            write(client_fd, starting_message.c_str(), starting_message.length());
             client1 = players_fd.top();
             players_fd.pop();
             client2 = players_fd.top();
             players_fd.pop();
-
-            game_vector.push_back(std::make_unique<GameProcess>(client1, client2));
-            threads_vector.emplace_back(client_thread, client1, std::ref(*game_vector.back().get()));
-            threads_vector.emplace_back(client_thread, client2, std::ref(*game_vector.back().get()));
+            game_pointer = std::make_shared<GameProcess>(client1, client2);
+//            game_vector.push_back(std::make_unique<GameProcess>(client1, client2));
+            threads_vector.emplace_back(client_thread, client1, std::ref(*game_pointer.get()));
+            threads_vector.emplace_back(client_thread, client2, std::ref(*game_pointer.get()));
         }
 
 
@@ -118,4 +119,3 @@ int main() {
 
 
 }
-

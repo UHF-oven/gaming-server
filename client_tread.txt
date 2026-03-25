@@ -56,7 +56,6 @@ int client_thread(int client_fd, GameProcess& game) {
         answer = oss.str();
 
         write(client_fd, answer.c_str(), answer.length());
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
 
     }
