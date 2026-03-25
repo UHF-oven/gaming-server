@@ -1,6 +1,8 @@
 *.o
 *.a
 *.un~
+*.txt
+.*
 shit
 
 send.sh
